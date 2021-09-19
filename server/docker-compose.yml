@@ -12,3 +12,23 @@ services:
     ports:
       - 5000:5000
     restart: always
+    environment:
+      DATABASE_URL: postgres://petbooks:verysecurepassword@postgres:5432/petbooks
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: pet-books-db
+    image: postgres:13.3-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: petbooks
+      POSTGRES_PASSWORD: verysecurepassword
+      POSTGRES_DB: petbooks
+    ports:
+      - 5432:5432
+
+volumes:
+  db-data:
