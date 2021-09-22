@@ -5,7 +5,7 @@ import morgan from "morgan";
 import { authRouter } from "./routers/authRouter";
 
 export const app = express();
-const apiRouter = Router();
+const api = Router();
 const v1 = Router();
 
 // Middleware goes here
@@ -17,7 +17,7 @@ app.use(
 );
 
 // Routing goes here
-app.use("/api", apiRouter);
-apiRouter.use("/v1", v1);
+app.use("/api", api);
+api.use("/v1", v1);
 
 v1.use("/auth", authRouter);
