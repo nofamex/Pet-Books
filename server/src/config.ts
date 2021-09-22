@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+import { authRouter } from "./routers/authRouter";
 
 export const app = express();
 const apiRouter = Router();
@@ -9,4 +10,6 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 
 // Routing goes here
 app.use("/api", apiRouter);
-app.use("/v1", v1);
+apiRouter.use("/v1", v1);
+
+v1.use("/auth", authRouter);

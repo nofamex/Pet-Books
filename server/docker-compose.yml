@@ -14,6 +14,7 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgres://petbooks:verysecurepassword@postgres:5432/petbooks
+      JWT_SECRET: verysecret
     depends_on:
       - postgres
 
