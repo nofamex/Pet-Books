@@ -1,4 +1,4 @@
-import { CONFLICT, NOT_ACCEPTABLE, NOT_FOUND } from "http-status";
+import { CONFLICT, NOT_ACCEPTABLE, NOT_FOUND, UNAUTHORIZED } from "http-status";
 import ApiError from "./apiError";
 
 export const usernameAlreadyExistError = (): ApiError => {
@@ -22,5 +22,21 @@ export const wrongPasswordError = (): ApiError => {
     NOT_ACCEPTABLE,
     "Login Error",
     "The given password doesnt match."
+  );
+};
+
+export const unauthorizedAccesError = (): ApiError => {
+  return new ApiError(
+    UNAUTHORIZED,
+    "Token Error",
+    "Unauthorized in api access."
+  );
+};
+
+export const unauthorizedRoleError = (): ApiError => {
+  return new ApiError(
+    UNAUTHORIZED,
+    "Role Error",
+    "The role access doesn't match with the api credential."
   );
 };
