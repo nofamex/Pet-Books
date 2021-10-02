@@ -15,7 +15,8 @@ export default class AuthService {
     role: Role;
     full_name: string;
     email: string;
-    birthday: Date;
+    doctor_certificate: string;
+    store_name: string;
   }) {
     const hashedPassword = await bcrypt.hash(options.password, 10);
 
@@ -29,7 +30,8 @@ export default class AuthService {
           role: options.role,
           full_name: options.full_name,
           email: options.email,
-          birthday: options.birthday,
+          doctor_certificate: options.doctor_certificate,
+          store_name: options.store_name,
         },
       });
     } catch (error) {

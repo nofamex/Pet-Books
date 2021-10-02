@@ -7,7 +7,15 @@ export const authRouter = Router();
 const authService = new AuthService();
 
 authRouter.post("/register", async (req: Request, res: Response) => {
-  const { username, password, role, full_name, email, birthday } = req.body;
+  const {
+    username,
+    password,
+    role,
+    full_name,
+    email,
+    doctor_certificate,
+    store_name,
+  } = req.body;
 
   const user = await authService.register({
     username,
@@ -15,7 +23,8 @@ authRouter.post("/register", async (req: Request, res: Response) => {
     role,
     full_name,
     email,
-    birthday,
+    doctor_certificate,
+    store_name,
   });
 
   if (user instanceof ApiError) {
