@@ -10,13 +10,12 @@ import {
 
 export default class AuthService {
   async register(options: {
+    first_name: string;
+    last_name: string;
     username: string;
     password: string;
-    role: Role;
-    full_name: string;
     email: string;
-    doctor_certificate: string;
-    store_name: string;
+    role: Role;
   }) {
     const hashedPassword = await bcrypt.hash(options.password, 10);
 
@@ -25,13 +24,12 @@ export default class AuthService {
     try {
       user = await prisma.user.create({
         data: {
+          first_name: options.first_name,
+          last_name: options.last_name,
           username: options.username,
           password: hashedPassword,
-          role: options.role,
-          full_name: options.full_name,
           email: options.email,
-          doctor_certificate: options.doctor_certificate,
-          store_name: options.store_name,
+          role: options.role,
         },
       });
     } catch (error) {

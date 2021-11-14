@@ -6,9 +6,13 @@
   "scripts": {
     "start:dev": "nodemon dist/src/index.js",
     "build:dev": "tsc --watch --preserveWatchOutput",
+    "dc-build": "npm run generate && npm run migrate && npm run dev",
+    "generate-db": "npx prisma generate",
+    "introspect-db": "npx prisma introspect",
+    "migrate-db": "npx prisma migrate dev",
     "dev": "concurrently \"npm:build:dev\" \"npm:start:dev\""
   },
-  "author": "",
+  "author": "furry gang",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -23,7 +27,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@prisma/client": "^3.1.1",
+    "@prisma/client": "^3.4.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",

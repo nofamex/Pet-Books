@@ -1,6 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["native"]
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -10,14 +10,13 @@ datasource db {
 
 model User {
   id                 Int      @id @default(autoincrement())
+  first_name         String   @db.VarChar(255)
+  last_name          String   @db.VarChar(255)
   username           String   @unique
-  createdAt          DateTime @default(now())
-  email              String
-  full_name          String   @db.VarChar(255)
   password           String
+  email              String
   role               Role
-  doctor_certificate String?
-  store_name         String?
+  createdAt          DateTime @default(now())
 }
 
 enum Role {

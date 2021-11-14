@@ -8,30 +8,28 @@ const authService = new AuthService();
 
 authRouter.post("/register", async (req: Request, res: Response) => {
   const {
+    first_name,
+    last_name,
     username,
     password,
-    role,
-    full_name,
     email,
-    doctor_certificate,
-    store_name,
+    role,
   } = req.body;
 
   const user = await authService.register({
+    first_name,
+    last_name,
     username,
     password,
-    role,
-    full_name,
     email,
-    doctor_certificate,
-    store_name,
+    role,
   });
 
   if (user instanceof ApiError) {
-    res.status(CONFLICT).json(user);
-  } else {
-    res.status(OK).json(user);
-  }
+    return res.status(CONFLICT).json(user);
+  } 
+
+  return res.status(OK).json(user);
 });
 
 authRouter.post("/login", async (req: Request, res: Response) => {
@@ -43,8 +41,9 @@ authRouter.post("/login", async (req: Request, res: Response) => {
   });
 
   if (user instanceof ApiError) {
-    res.status(INTERNAL_SERVER_ERROR).json(user);
-  } else {
-    res.status(OK).json(user);
-  }
+    return res.status(INTERNAL_SERVER_ERROR).json(user);
+  } 
+  
+  return res.status(OK).json(user);
+  
 });
