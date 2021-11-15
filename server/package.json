@@ -13,7 +13,7 @@
     "dev": "concurrently \"npm:build:dev\" \"npm:start:dev\""
   },
   "author": "furry gang",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",

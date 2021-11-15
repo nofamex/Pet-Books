@@ -16,6 +16,11 @@ model User {
   password           String
   email              String
   role               Role
+  certificate        String?  @db.Text
+  shelter_name       String?  @db.VarChar(255)
+  shelter_address    String?  @db.Text
+  shelter_telephone  String?
+  isVerified         Int      @default(0)
   createdAt          DateTime @default(now())
 }
 
