@@ -14,6 +14,10 @@ authRouter.post("/register", async (req: Request, res: Response) => {
     password,
     email,
     role,
+    certificate,
+    shelter_name,
+    shelter_address,
+    shelter_telephone
   } = req.body;
 
   const user = await authService.register({
@@ -23,6 +27,10 @@ authRouter.post("/register", async (req: Request, res: Response) => {
     password,
     email,
     role,
+    certificate,
+    shelter_name,
+    shelter_address,
+    shelter_telephone
   });
 
   if (user instanceof ApiError) {

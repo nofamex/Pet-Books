@@ -16,10 +16,16 @@ export default class AuthService {
     password: string;
     email: string;
     role: Role;
+    certificate?: string | null;
+    shelter_name?: string | null;
+    shelter_address?: string | null;
+    shelter_telephone?: string | null;
   }) {
     const hashedPassword = await bcrypt.hash(options.password, 10);
 
     let user;
+
+    const isVerified = options.role === "USER" ? 1 : 0;
 
     try {
       user = await prisma.user.create({
@@ -30,6 +36,11 @@ export default class AuthService {
           password: hashedPassword,
           email: options.email,
           role: options.role,
+          certificate: options.certificate,
+          shelter_name: options.shelter_name,
+          shelter_address: options.shelter_address,
+          shelter_telephone: options.shelter_telephone,
+          isVerified: isVerified
         },
       });
     } catch (error) {
