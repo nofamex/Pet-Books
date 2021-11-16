@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { CONFLICT, OK, INTERNAL_SERVER_ERROR } from "http-status";
 import AuthService from "../services/authService";
 import ApiError from "../error/apiError";
+import { registerResponse } from "../lib/responseBuilder";
 
 export const authRouter = Router();
 const authService = new AuthService();
@@ -37,7 +38,7 @@ authRouter.post("/register", async (req: Request, res: Response) => {
     return res.status(CONFLICT).json(user);
   } 
 
-  return res.status(OK).json(user);
+  return res.status(OK).json(registerResponse(user));
 });
 
 authRouter.post("/login", async (req: Request, res: Response) => {
